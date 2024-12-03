@@ -2,8 +2,8 @@
     <div class="bg-[#121212] text-[#ECECEC]">
         <NuxtImg src="/img/detail-bg.png" class="absolute top-0 left-0"></NuxtImg>
 
-        <div class="container mx-auto px-36 md:flex min-h-screen pt-10 relative z-10">
-            <div class="w-full md:w-1/3 pr-20">
+        <div class="container mx-auto px-0 md:px-36 md:flex min-h-screen pt-10 relative z-10">
+            <div class="w-full md:w-1/3 px-8 md:px-0 md:pr-20">
                 <div class="flex gap-2 items-center cursor-pointer" @click="$router.push('/')">
                     <svg width="30" height="9" viewBox="0 0 30 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -37,8 +37,8 @@
                 </div>
             </div>
 
-            <div class="w-full md:w-2/3">
-                <embed :src="`${work.pdf}#toolbar=0&navpanes=0&scrollbar=0`" height="100%" class="w-full h-full" />
+            <div class="w-full pt-20 md:pt-0 md:w-2/3">
+                <iframe :src="`${work.pdf}#toolbar=0&navpanes=0&scrollbar=0`" class="w-full h-full" />
             </div>
         </div>
     </div>
