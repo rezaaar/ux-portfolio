@@ -6,8 +6,10 @@ export default defineNuxtConfig({
       Inter: true
     }
   },
+  ssr: false,
   devtools: { enabled: true },
   modules: [
+    '@pinia/nuxt',
     '@nuxtjs/tailwindcss',
     '@nuxt/image',
     '@nuxtjs/google-fonts',

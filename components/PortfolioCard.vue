@@ -1,5 +1,6 @@
 <template>
-    <div class="rounded-2xl bg-[#1C1C1C] text-[#ECECEC] w-full hover:shadow hover:shadow-[#C9C9C930] cursor-pointer" @click="downloadPDF()">
+    <div class="rounded-2xl bg-[#1C1C1C] text-[#ECECEC] w-full hover:shadow hover:shadow-[#C9C9C930] cursor-pointer"
+        @click="goToDetail">
         <NuxtImg :src="image" class="w-full h-[275px] object-cover rounded-2xl"></NuxtImg>
 
         <div class="py-6 px-4 space-y-3">
@@ -12,18 +13,19 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 const props = defineProps({
     image: String,
     title: String,
     category: String,
-    download: String
-})
+});
 
-const downloadPDF = () => {
-    const filePath = `/` + props.download; // Static files are served from the root in Nuxt
-    const link = document.createElement('a');
-    link.href = filePath;
-    link.download = props.download; // This sets the suggested filename
-    link.click()
-}
+const goToDetail = () => {
+    const routeName = props.title.replace(/\s+/g, '-').toLowerCase();
+    // console.log(routeName)
+    router.push(`/detail/${routeName}`);
+};
 </script>
