@@ -34,8 +34,8 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-12 mt-4">
-                    <PortfolioCard v-for="work in works" :key="work.title" :name="work.name" :image="work.cover" :title="work.title"
-                        :category="work.category" />
+                    <PortfolioCard v-for="work in works" :key="work.title" :name="work.name" :image="work.cover"
+                        :title="work.title" :category="work.category" />
                 </div>
 
             </div>
@@ -54,6 +54,9 @@
                         implementation. With a research-driven approach, I uncover unique insights to design engaging,
                         functional experiences that elevate user interaction.
                     </p>
+
+                    <a href="/pdf/resume.pdf" target="_blank"
+                        class="py-4 px-8 w-fit bg-[#ececec]/10 rounded-full border border-[#ececec]/25 backdrop-blur-[20px] block">View My Resume</a>
                 </div>
             </div>
         </section>
