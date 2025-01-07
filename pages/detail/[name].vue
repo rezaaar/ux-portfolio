@@ -22,9 +22,8 @@
 
                         <div class="space-y-4">
                             <p class="text-[#C9C9C9]">{{ work.description }}</p>
-                            <a :href="work.pdf"
-                                class="block py-4 px-8 w-full text-center bg-[#ececec] rounded-full text-[#121212] font-semibold"
-                                download>
+                            <a :href="work.pdf" target="_blank"
+                                class="block py-4 px-8 w-full text-center bg-[#ececec] rounded-full text-[#121212] font-semibold">
                                 Download PDF
                             </a>
                         </div>
@@ -41,7 +40,8 @@
             </div>
 
             <div class="w-full pt-20  md:pt-0 md:w-2/3 pb-20">
-                <canvas ref="pdfCanvas" class="w-full" v-show="!isLoadingPDF"></canvas>
+                <NuxtImg :src="work.docImg" class="w-full"></NuxtImg>
+
                 <h1 v-show="isLoadingPDF" class="w-full text-center animate-pulse pt-20">Loading file...</h1>
             </div>
         </div>
@@ -59,18 +59,11 @@
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useWorksStore } from '@/stores/works';
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
-
-// Set the workerSrc to the correct path
-
-
-GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.9.124/build/pdf.worker.mjs';
 
 const route = useRoute();
 const worksStore = useWorksStore();
 const routeName = route.params.name.replace(/-/g, ' ');
 const work = worksStore.getWorkByTitle(routeName);
-const isLoadingPDF = ref(false)
 const showScrollToTop = ref(false);
 
 
@@ -78,30 +71,6 @@ if (!work) {
     console.error('Work not found');
     // Handle not found case (e.g., redirect or show a message)
 }
-
-const pdfCanvas = ref(null);
-
-const renderPDF = async (pdfUrl) => {
-    isLoadingPDF.value = true
-    const pdf = await getDocument(pdfUrl).promise;
-    const page = await pdf.getPage(1); // Render the first page of the PDF
-
-    const viewport = page.getViewport({ scale: 1.5 }); // Adjust scale for resolution
-    const canvas = pdfCanvas.value;
-    const context = canvas.getContext('2d');
-
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-
-    const renderContext = {
-        canvasContext: context,
-        viewport,
-    };
-
-    await page.render(renderContext).promise;
-
-    isLoadingPDF.value = false
-};
 
 const scrollToTop = () => {
     window.scrollTo({
@@ -123,9 +92,6 @@ onUnmounted(() => {
 });
 
 onMounted(() => {
-    if (work && work.pdf) {
-        renderPDF(work.pdf);
-    }
     window.addEventListener('scroll', handleScroll);
 });
 </script>

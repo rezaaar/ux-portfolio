@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-12 mt-4">
-                    <PortfolioCard v-for="work in works" :key="work.title" :image="work.cover" :title="work.title"
+                    <PortfolioCard v-for="work in works" :key="work.title" :name="work.name" :image="work.cover" :title="work.title"
                         :category="work.category" />
                 </div>
 

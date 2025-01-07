@@ -18,14 +18,14 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 
 const props = defineProps({
+    name: String,
     image: String,
     title: String,
     category: String,
 });
 
 const goToDetail = () => {
-    const routeName = props.title.replace(/\s+/g, '-').toLowerCase();
     // console.log(routeName)
-    router.push(`/detail/${routeName}`);
+    router.push(`/detail/${props.name}`);
 };
 </script>

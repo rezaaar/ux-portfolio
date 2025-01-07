@@ -4,21 +4,25 @@ export const useWorksStore = defineStore('works', {
   state: () => ({
     works: [
       {
+        name: 'latte',
         title: 'Latte Art Simulation App',
         category: 'UX Study',
         pdf: '/pdf/latte.pdf',
         description: 'Enhancing Technology for an Immersive Experience',
         cover: '/img/banner/LatteAR.png',
+        docImg: '/img/doc/latte-long.png',
         tools: 'Figma, FigJam',
       },
-      // {
-      //   title: 'Work 2',
-      //   category: 'Graphic Design',
-      //   pdf: '/pdf/work2.pdf',
-      //   description: 'An exploration of modern design.',
-      //   cover: '/img/work2-cover.jpg',
-      //   tools: 'Adobe Photoshop, Illustrator',
-      // },
+      {
+        name: 'fondasi',
+        title: 'Material Visualization',
+        category: 'UX Study',
+        pdf: '/pdf/Fondasi.pdf',
+        description: 'From frustration to Inovation',
+        cover: '/img/banner/fondasi.png',
+        docImg: '/img/doc/fondasi-long.png',
+        tools: 'Figma, Figjam',
+      },
     ],
   }),
   getters: {
@@ -27,7 +31,7 @@ export const useWorksStore = defineStore('works', {
         str.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
       const normalizedTitle = normalize(rawTitle);
-      return state.works.find((work) => normalize(work.title) === normalizedTitle);
+      return state.works.find((work) => normalize(work.name) === normalizedTitle);
     }
   },
 });
