@@ -19,7 +19,7 @@ export const useWorksStore = defineStore('works', {
         category: 'UX Study',
         pdf: '/pdf/Fondasi.pdf',
         description: 'From frustration to Inovation',
-        cover: '/img/banner/fondasi.png',
+        cover: '/img/banner/Fondasi.png',
         docImg: '/img/doc/fondasi-long.png',
         tools: 'Figma, Figjam',
       },
